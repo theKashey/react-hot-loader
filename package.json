@@ -8,6 +8,7 @@
     "build": "lerna-build",
     "format": "prettier --write \"**/*.{js,md,ts,json}\" *.{js,md,ts,json}",
     "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
     "prepublishOnly": "yarn build",
     "prebuild": "rm -rf packages/*/lib",
     "precommit": "lint-staged",

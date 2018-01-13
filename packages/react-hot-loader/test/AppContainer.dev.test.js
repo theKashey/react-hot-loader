@@ -1308,13 +1308,11 @@ describe(`AppContainer (dev)`, () => {
       RHL.register(App, 'App', 'test.js')
 
       // return rendered component from a stateless
-      const IndeterminateComponent = (props, context) => {
-        return new CurrentApp(props, context)
-        //return <CurrentApp {...props} />
-      }
-      const RootApp = props => {
-        return <IndeterminateComponent {...props} />
-      }
+      const IndeterminateComponent = (props, context) =>
+        new CurrentApp(props, context)
+      // return <CurrentApp {...props} />
+
+      const RootApp = props => <IndeterminateComponent {...props} />
 
       const wrapper = mount(
         <AppContainer>
@@ -1343,8 +1341,8 @@ describe(`AppContainer (dev)`, () => {
         expect(spy).toHaveBeenCalledTimes(1) // called during reconciler, has no effect on result
 
         // How it should work
-        //expect(wrapper.text()).toBe('ho 45 new');
-        //expect(spy).toHaveBeenCalledTimes(2);
+        // expect(wrapper.text()).toBe('ho 45 new');
+        // expect(spy).toHaveBeenCalledTimes(2);
       }
     })
 

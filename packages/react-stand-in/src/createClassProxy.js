@@ -1,10 +1,9 @@
-import { Component, createElement } from 'react'
+import { Component } from 'react'
 import transferStaticProps from './transferStaticProps'
 import { GENERATION, PROXY_KEY, UNWRAP_PROXY } from './constants'
 import {
   getDisplayName,
   isReactClass,
-  isReactIndeterminateResult,
   identity,
   safeDefineProperty,
   proxyClassCreator,
@@ -51,7 +50,10 @@ function createClassProxy(InitialComponent, proxyKey, wrapResult = identity) {
     return wrapResult(result, this.props, this.context)
   }
 
-  let ProxyComponent = proxyClassCreator(InitialParent, postConstructionAction)
+  const ProxyComponent = proxyClassCreator(
+    InitialParent,
+    postConstructionAction,
+  )
 
   ProxyComponent.prototype.render = proxiedRender
 
